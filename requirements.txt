@@ -1,0 +1,449 @@
+# Requirements Document: AI-Powered Meal Planning Agent
+
+## 1. Product Overview
+
+The AI-Powered Meal Planning Agent is a digital assistant designed to help individuals and households plan meals efficiently across a week or month. The system combines user preferences, dietary constraints, pantry inventory, household needs, time availability, and budget to generate personalized meal plans and corresponding shopping lists.
+
+The agent should deliver practical and realistic output that reduces decision fatigue, minimizes food waste, improves grocery efficiency, and supports healthier eating habits. It should be capable of generating:
+- weekly and monthly meal plans
+- ingredient and quantity planning
+- shopping lists grouped by category
+- meal-prep and leftovers recommendations
+- substitution suggestions
+- budget insights
+- ingredient overlap strategy to minimize waste
+
+The solution is intended for use by busy households, families, individuals with dietary restrictions, budget-conscious shoppers, and anyone looking to optimize meal preparation.
+
+---
+
+## 2. Problem Statement
+
+Many users struggle with meal planning because they must balance multiple competing priorities:
+- dietary preferences and restrictions
+- time constraints
+- household size and meal frequency
+- pantry items already available
+- budget limits
+- food waste concerns
+- repeated meal fatigue
+- limited cooking ability or energy
+
+Current approaches often require manual planning across spreadsheets, recipe apps, or grocery lists, which is time-consuming and prone to inconsistency. Users need an intelligent system that can automatically generate a personalized plan and shopping list based on real constraints, not just recipes.
+
+The meal planning agent addresses this by acting as a planning assistant that understands the user’s constraints and produces a realistic, cost-aware, low-waste meal schedule.
+
+---
+
+## 3. Target Users
+
+### Primary Users
+- Families planning meals for multiple people
+- Individuals managing dietary restrictions
+- Budget-conscious shoppers
+- People with limited time for meal prep
+- Users who want to reduce food waste
+- People managing allergies, preferences, or special health goals
+
+### Secondary Users
+- Meal-prep enthusiasts
+- Students or young professionals
+- Caregivers planning family meals
+- Shared household planners
+- Health-conscious users seeking balanced nutrition
+
+---
+
+## 4. Goals
+
+### Business Goals
+- Increase user retention through daily value and convenience
+- Reduce user effort in meal planning and grocery shopping
+- Support healthy and budget-aware eating decisions
+- Minimize food waste by reusing ingredients across meals
+- Help users create repeatable, sustainable meal routines
+
+### User Goals
+- Plan meals quickly and confidently
+- Stay within dietary and budget constraints
+- Use pantry and fridge items efficiently
+- Know what to buy and in what quantities
+- Avoid food waste
+- Save time and reduce stress
+
+---
+
+## 5. Non-Goals
+
+The product is not intended to:
+- replace professional nutrition counseling in medical cases
+- manage full restaurant or catering operations
+- provide detailed nutritional diagnoses for medical treatment
+- automatically order groceries from external suppliers unless explicitly integrated later
+- generate complex restaurant-style production planning for commercial kitchens
+- serve as a legal or ingredient-safety compliance tool for allergen management beyond user-provided restrictions
+
+---
+
+## 6. Prioritization
+
+### Must Have
+- Generate weekly and monthly meal plans based on user constraints
+- Create category-based shopping lists with quantities
+- Respect dietary restrictions and allergies
+- Support household size and meal frequency
+- Use pantry/fridge inventory to reduce waste and duplicate purchases
+- Estimate budget and identify cost-saving opportunities
+- Support plan regeneration when preferences change
+
+### Should Have
+- Meal-prep and leftovers strategy
+- Seasonal ingredient recommendations
+- Substitution suggestions
+- Recurring meal rotation for monthly plans
+- User-friendly calendar-like meal schedule
+- Cost optimization with ingredient overlap
+
+### Nice to Have
+- Recipe generation or link suggestions
+- Nutrition scoring for balanced meals
+- Integration with grocery apps
+- Voice-based interaction
+- Smart reminders for leftovers and pantry reviews
+- Seasonal meal suggestions by region or climate
+
+---
+
+## 7. Functional Requirements
+
+### 7.1 Meal Plan Generation
+The system shall allow users to provide:
+- dietary preferences
+- restrictions/allergies
+- household size
+- meals per day
+- available cooking time
+- pantry and fridge inventory
+- preferred cuisines
+- budget limit
+- recurring preferences
+- seasonal preferences
+- meal prep preferences
+
+Based on this input, the system shall generate:
+- a weekly meal plan
+- a monthly meal plan
+- day-by-day or date-based meal assignments
+- options to choose between easy, medium, and high-effort meals
+- meal variety while maintaining ingredient overlap
+
+### 7.2 Shopping List Generation
+The system shall generate a shopping list derived from the selected meal plan and include:
+- item name
+- quantity
+- unit
+- category (produce, dairy, proteins, grains, pantry, frozen, beverages, etc.)
+- pantry item reuse status
+- missing ingredient detection
+
+The shopping list must align with the number of people and planned meals.
+
+### 7.3 Quantities and Portioning
+The system shall calculate ingredient quantities based on:
+- household size
+- number of servings required
+- leftover planning
+- pantry inventory
+- recipe scaling
+- frequency of meals across the plan
+
+### 7.4 Leftovers and Meal Prep
+The system shall:
+- identify meals that can be prepared in bulk
+- suggest leftovers for lunches or subsequent meals
+- recommend storage and reuse strategy
+- reduce waste by planning ingredient overlap
+
+### 7.5 Substitutions
+The system shall suggest acceptable alternatives when:
+- a requested ingredient is missing
+- a user has a dietary restriction
+- a product is too expensive
+- a seasonal ingredient is unavailable
+
+Substitutions must preserve the meal’s intended structure and user constraints.
+
+### 7.6 Budgeting
+The system shall estimate:
+- total grocery cost for the plan
+- per-meal cost
+- cost per person
+- cost-saving opportunities
+- lower-cost ingredient replacements
+
+The system shall flag meals that exceed the user’s budget and offer alternatives.
+
+### 7.7 Waste Reduction
+The system shall minimize waste by:
+- reusing overlapping ingredients across meals
+- suggesting recipes that use the same produce or pantry staples
+- highlighting items likely to expire soon
+- recommending leftover repurposing
+
+### 7.8 User Preferences and Adjustments
+The system shall allow users to:
+- edit preferences after plan generation
+- regenerate the plan with preserved valid selections
+- mark meals as favorites or disliked
+- exclude dishes or ingredients
+- lock selected meals for specific days
+- choose plan length (week or month)
+- request a “cheaper,” “faster,” or “healthier” version
+
+---
+
+## 8. Non-Functional Requirements
+
+### 8.1 Usability
+- The interface shall be intuitive for non-technical users.
+- Meal plans must be readable and understandable at a glance.
+- The user must be able to edit preferences and regenerate a plan in a few interactions.
+
+### 8.2 Performance
+- Weekly plan generation should be near real-time for standard requests.
+- Monthly plan generation should complete within reasonable processing time for typical household sizes.
+- The system should return visible results quickly without requiring the user to wait long.
+
+### 8.3 Reliability
+- The system must handle incomplete input gracefully.
+- Invalid or contradictory inputs must trigger clarification, defaults, or safe recommendations.
+- The planner must not generate unsafe meal suggestions for known allergies.
+
+### 8.4 Security and Privacy
+- User dietary data, allergies, and household data must be protected.
+- Sensitive dietary and medical information must be treated as confidential.
+- No personal data should be exposed in logs or response payloads beyond required operational usage.
+
+### 8.5 Scalability
+- The system must support multiple users and households without performance degradation.
+- It should support both lightweight personal planning and larger family meal schedules.
+
+### 8.6 Maintainability
+- Business rules for dietary restrictions, budgets, and ingredient substitutions must be configurable.
+- Ingredient and recipe data should be structured and maintainable.
+
+---
+
+## 9. Assumptions and Constraints
+
+### Assumptions
+- Users provide enough data to create a useful plan.
+- Ingredient prices are available or estimated from a reference data source.
+- Household members may have overlapping but not identical preferences.
+- Some meals may be repeated by design for efficiency or habit.
+- Users may prefer convenience over variety or vice versa.
+
+### Constraints
+- The system should not assume medical accuracy beyond the user’s self-reported dietary restrictions.
+- Meal planning must account for realistic ingredient availability and seasonality.
+- Generated meal plans should avoid unsafe allergen crossovers when explicitly restricted.
+- Budget estimates are approximations unless integrated with marketplace pricing data.
+
+---
+
+## 10. Edge Cases
+
+The system must handle the following situations:
+- No pantry inventory available
+- User provides incomplete or contradictory dietary information
+- Unexpected food allergies or ingredient sensitivities
+- Meal plan generated with insufficient variation
+- Grocery budget too low for healthy meal coverage
+- Household members have conflicting preferences
+- User has multiple dietary restrictions but limited ingredient options
+- Meal schedule includes multiple days with minimal ingredient overlap
+- User wants a plan but has no time to cook at all
+- User requests a monthly plan but only a short shopping list is feasible
+- Seasonal ingredients unavailable in local markets
+- One or more ingredients are missing from the store or pantry
+- User asks for vegetarian, vegan, gluten-free, or keto constraints simultaneously
+
+In such cases, the system should request clarification, provide safe defaults, or suggest compliant alternatives.
+
+---
+
+## 11. User Stories
+
+### Epic 1: Meal Planning
+- As a busy parent, I want the agent to create a weekly meal plan, so that I can reduce planning effort for my family.
+- As a person with dietary restrictions, I want the system to avoid restricted ingredients, so that I can eat safely.
+- As a household planner, I want a monthly view, so that I can anticipate recurring meals and shopping needs.
+
+### Epic 2: Shopping List Generation
+- As a shopper, I want a grouped shopping list, so that I can buy groceries efficiently.
+- As a budget-conscious user, I want quantity estimates, so that I can buy the right amount and avoid waste.
+
+### Epic 3: Budget and Waste Reduction
+- As a cost-conscious user, I want budget-aware meal suggestions, so that I can stay within my spending limit.
+- As a household user, I want ingredient overlap across meals, so that I can reduce food waste.
+
+### Epic 4: Adjustments and Regeneration
+- As a user, I want to modify my preferences and regenerate the plan, so that I can adapt to changing needs.
+- As a user, I want substitutions, so that I can still make meals when ingredients are unavailable.
+
+---
+
+## 12. Acceptance Criteria
+
+### Functional Acceptance Criteria
+- Given a user provides dietary preferences, household size, budget, and available ingredients, when the agent creates a plan, then it should generate meals that fit those constraints.
+- Given a user selects a week or month view, when the agent generates the plan, then it should produce a calendar-like schedule with clearly defined meals and days.
+- Given a shopping list is requested, when the agent creates it, then it should group items by category and calculate quantities based on the meal plan.
+- Given a user has dietary restrictions or allergies, when the plan is generated, then meals should exclude prohibited ingredients and highlight substitutions.
+- Given a user has leftovers or pantry items, when the agent plans meals, then it should prioritize ingredients already available and reduce waste.
+- Given a user asks for budget control, when the plan is generated, then it should estimate total cost and propose lower-cost alternatives.
+- Given a plan is generated for a month, when the user reviews it, then it should include recurring meals, rotation strategy, and ingredient overlap for efficiency.
+- Given any invalid or incomplete input, when the system processes the request, then it should request missing information or provide a safe default.
+- Given meals are created, when the user edits preferences, then the agent should regenerate the plan while preserving valid prior selections where possible.
+
+### Quality Acceptance Criteria
+- The system shall clearly indicate when a meal exceeds the user’s budget.
+- The system shall mark meals containing restricted ingredients as not recommended or excluded.
+- The system shall produce a shopping list with no duplicate items unless purposely duplicated for repeated purchases.
+- The system shall use pantry items before suggesting additional purchases.
+- The system shall display plan changes clearly when the user updates constraints.
+
+---
+
+## 13. Data Model Requirements
+
+The system should maintain structured data for the following entities:
+
+### User Profile
+- user ID
+- household size
+- dietary preferences
+- allergies/restrictions
+- budget
+- preferred cuisines
+- cooking skill level
+- meal frequency preferences
+- saved favorites/dislikes
+- meal prep style
+
+### Meal Plan
+- plan ID
+- plan type (weekly/monthly)
+- start and end date
+- daily meals (breakfast, lunch, dinner, snacks)
+- household servings
+- notes
+- generated timestamp
+
+### Ingredient
+- ingredient ID
+- name
+- category
+- unit
+- shelf life
+- seasonality
+- substitution options
+- allergens
+
+### Pantry / Inventory
+- ingredient ID
+- quantity available
+- expiration date
+- storage location
+- purchased or stock status
+
+### Shopping List
+- list ID
+- meal plan ID
+- item name
+- category
+- quantity
+- estimated cost
+- purchased status
+- source (new purchase vs pantry use)
+
+### Budget
+- budget limit
+- estimated spend
+- cost per meal
+- savings recommendations
+
+### Meal Preferences and Rules
+- disliked foods
+- recurring meals
+- cuisine restrictions
+- maximum prep time
+- preferred leftovers strategy
+
+---
+
+## 14. User Workflows
+
+### Workflow 1: Generate a Weekly Meal Plan
+1. User enters household size, dietary restrictions, cooking time, and budget.
+2. User optionally lists pantry inventory.
+3. System analyzes constraints.
+4. System generates a 7-day meal schedule.
+5. User reviews meals and adjusts preferences.
+6. System updates the plan.
+
+### Workflow 2: Generate a Monthly Meal Plan
+1. User selects monthly planning mode.
+2. User chooses meal preference patterns and cost priorities.
+3. System creates recurring meals and ingredient reuse strategy.
+4. System produces a monthly plan plus shopping list.
+5. User reviews and refines.
+
+### Workflow 3: Shopping List Creation
+1. User selects plan or meal schedule.
+2. System creates a grouped shopping list.
+3. System filters out already available pantry items.
+4. User confirms list, then purchases items or revises quantities.
+
+### Workflow 4: Budget Optimization
+1. User sets a monthly grocery budget.
+2. System estimates total cost.
+3. System suggests lower-cost alternatives and ingredient swaps.
+4. User chooses a preferred balance of affordability and variety.
+
+---
+
+## 15. Sample Inputs and Expected Outputs
+
+### Sample Input
+- Household size: 4
+- Dietary preferences: vegetarian, high protein
+- Budget: $180/week
+- Cooking time: 30–45 minutes per meal
+- Pantry inventory: rice, oats, canned beans, olive oil, garlic
+- Seasonal preferences: fall vegetables
+- Restrictions: no peanuts, no dairy
+
+### Expected Output
+- 7-day meal plan with balanced meals
+- Shopping list grouped by produce, pantry, dairy alternatives, proteins
+- Recipes or meal suggestions using pantry items first
+- Ingredient overlap such as sweet potatoes, spinach, quinoa, chickpeas
+- Estimated total grocery cost: $162
+- Suggestions: swap tofu for tempeh, use lentils instead of pricey protein shakes
+- Leftover plan for rice and roasted vegetables
+
+---
+
+## 16. Summary
+
+The AI meal planning agent should function as a practical decision-support tool that enables users to plan meals across a week or month using realistic constraints. It must generate not only a meal schedule but also a shopping list, quantities, substitutions, budget guidance, and waste-reduction recommendations.
+
+The key success factor is usefulness: the generated plan must be realistic, personalized, and easy to act on. By balancing preferences, affordability, practicality, and efficiency, the system can significantly improve the user experience around grocery planning and home meal preparation.
+
+If you want, I can also turn this into:
+- a PRD format,
+- Jira-ready user stories and tasks,
+- Gherkin acceptance tests,
+- a backlog with epics and stories,
+- or a one-page product brief for stakeholder review.
